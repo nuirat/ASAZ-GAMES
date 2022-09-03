@@ -47,14 +47,7 @@ export default function Chat({ socket, user, room }) {
         />
         <button onClick={sendMessage}>send</button>
       </div>
-      <div className="Messages">
-        
-        {messages.map((m) => (
-          <div>
-            {m.author} : {m.message}
-          </div>
-        ))}
-      </div>
+
     </div>
   );
 }
