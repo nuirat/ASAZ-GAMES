@@ -2,6 +2,7 @@ import './App.css';
 import io from 'socket.io-client'
 import {useState} from 'react'
 import Chat from './components/Chat';
+import Game from './components/Game';
 function App() {
   const [user,setUser] = useState('')
   const [room,setRoom] = useState('')
@@ -18,6 +19,7 @@ function App() {
     <input  type = "text" placeholder = "room id..." value={room} onChange = { (e) => setRoom(e.target.value)}/>
     <button onClick={joinRoom}>Join a room</button>
     <Chat socket = {socket} user = {user} room = {room}/>
+    <Game socket = {socket} user = {user} room = {room}/>
     </div>
   );
 }
