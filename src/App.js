@@ -25,13 +25,14 @@ const App = () => {
       let newGames = response.data;
       setGames(newGames);
     });
-  });
+  },[]);
+  
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Landing />} />
+          <Route exact path="/" element={games?<Landing games={games}/>:null} />
         </Routes>
       </BrowserRouter>
       <h3>Join A Chat</h3>

@@ -3,7 +3,7 @@ import GameCard from "./GameCard";
 import "../styles/Landing.css";
 
 const Landing = (props) => {
-  // const games = props.games
+
   return (
     <div className="landing">
       <h1>games</h1>
@@ -11,7 +11,7 @@ const Landing = (props) => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, dolores.
       </p>
       <div className="games-container">
-        {/* {props.games.map((g) => <GameCard />)} */}
+        {props.games.map((g, key) => <GameCard key={key} game={g} />)}
       </div>
     </div>
   );
