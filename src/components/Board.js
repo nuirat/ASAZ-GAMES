@@ -2,10 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Square from "./Square";
 
-export default function Board({ socket, user, room,result,setResult }) {
+export default function Board({ socket, user, room, result, setResult }) {
   const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
   const [player, setPlayer] = useState("X");
   const [turn, setTurn] = useState("X");
+  let flag=true
   const Patterns = [
     [0, 1, 2],
     [3, 4, 5],
@@ -32,7 +33,9 @@ export default function Board({ socket, user, room,result,setResult }) {
       });
 
       if (foundWinningPattern) {
-        setResult({ winner: board[currPattern[0]], state: "won" });
+        if (board[currPattern[0]] == "X")
+          setResult({ winner: result.player1, state: "won" });
+        else setResult({ winner: result.player2, state: "won" });
       }
     });
   };
@@ -56,7 +59,8 @@ export default function Board({ socket, user, room,result,setResult }) {
       message: { square, player },
     };
     if (player === turn && board[square] === "") {
-      await socket.emit("sendMessage", messageData);
+
+      await socket.emit("sendSquare", messageData);
       setTurn(player === "X" ? "O" : "X");
       setBoard(
         board.map((b, index) => {
@@ -66,10 +70,27 @@ export default function Board({ socket, user, room,result,setResult }) {
       );
     }
   };
-  socket.on("receive_message", (data) => {
+  socket.on("receive_square", (data) => {
     const currentPlayer = data.message.player == "X" ? "O" : "X";
     setPlayer(currentPlayer);
     setTurn(currentPlayer);
+      if(flag){
+      if (board.indexOf("X") == -1)
+        setResult({
+          winner: "none",
+          player1: data.author,
+          player2: user,
+          state: "none",
+        });
+      else
+        setResult({
+          winner: "none",
+          player1: user,
+          state: "none",
+          player2: data.author,
+        });
+      flag=false
+      }
     setBoard(
       board.map((b, index) => {
         if (index == data.message.square && b == "") return data.message.player;
