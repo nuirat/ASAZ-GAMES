@@ -27,7 +27,7 @@ const App = () => {
   }, [theme]);
   return (
     <div className={`App ${theme}`}>
-    <button onClick={toggleTheme} id="theme">Toggle Theme</button>
+    <button onClick={toggleTheme} id="theme"></button>
       <h3>Join A Chat</h3>
       <input
         type="text"
