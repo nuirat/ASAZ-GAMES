@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const PORT = 4000
 const app = express()
 
-mongoose.connect("mongodb://localhost/games", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/games");
 
 app.use(express.json());
 app.use('/', api)

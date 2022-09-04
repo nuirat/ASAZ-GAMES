@@ -1,6 +1,6 @@
 const { faker } = require("@faker-js/faker");
 
-const makeUserGame = function () {
+const makeUserGames = function () {
     let userGame = {
       score: 0,
       isWon: false,
@@ -9,4 +9,4 @@ const makeUserGame = function () {
   return userGame;
 };
 
-module.exports.makeUserGame = makeUserGame;
+module.exports = makeUserGames;

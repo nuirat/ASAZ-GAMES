@@ -1,8 +1,9 @@
 const { faker } = require("@faker-js/faker");
+const User = require("../models/User");
 
-const makeUser = function () {
+const makeUsers = function () {
   const users = [];
-  const numberOfUsers = 10;
+  const numberOfUsers = 3;
   for (let i = 1; i <= numberOfUsers; i++) {
     let user = {
       userName: faker.name.firstName(),
@@ -15,4 +16,17 @@ const makeUser = function () {
   return users;
 };
 
-module.exports.users = makeUser();
+const onInsert = function (err, docs) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.info("Done");
+  }
+};
+
+const insertAllUsers = function () {
+  const users = makeUsers();
+  User.insertMany(users, onInsert);
+};
+
+module.exports = insertAllUsers;
