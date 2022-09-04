@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-// const dummyUsers = require("../dummy/users");
-// const dummyGames = require("../dummy/games");
 const Game = require("../models/Game");
 const User = require("../models/User");
 const UserGame = require("../models/UserGame");
 
+// const dummyUsers = require("../dummy/users");
+// const dummyGames = require("../dummy/games");
 // dummyUsers()
 // dummyGames()
 
@@ -54,25 +54,23 @@ router.post("/userGames", function (req, res) {
   // add user game when user start a game
   let userId = req.query.userId;
   let gameId = req.query.gameId;
-  let userGame = req.body
+  let userGame = req.body;
   Game.findById(gameId, function (err, game) {
-    userGame.game = game
+    userGame.game = game;
     let newUserGame = new UserGame(userGame);
     newUserGame.save();
     User.findByIdAndUpdate(
-        userId,
-        {
-          $push: { userGames: newUserGame },
-        },
-        { new: true },
-        function (err, user) {
-          let userGames = user.userGames;
-          res.send(userGames);
-        }
-      );
+      userId,
+      {
+        $push: { userGames: newUserGame },
+      },
+      { new: true },
+      function (err, user) {
+        res.send(newUserGame);
+      }
+    );
   });
 });
-
 
 router.get("/userGames/:userId", function (req, res) {
   // to get all games and all its info for a user
@@ -92,14 +90,22 @@ router.get("/userGames/:userId", function (req, res) {
     });
 });
 
-router.put("/userGames/:userGameId", function (req, res) {
+router.put("/userGames", function (req, res) {
   // update score or isWon from state ==> score and isWon from a query
-  let userGameId = req.params.userGameId
-  let score = req.query.score
-  let isWon = req.query.isWon
-  UserGame.findByIdAndUpdate(userGameId, function(userGame){
-     
-  })
+  let userGameId = req.query.userGameId;
+  let score = req.body.score;
+  let isWon = req.body.isWon;
+  UserGame.findByIdAndUpdate(
+    userGameId,
+    {
+      score: score,
+      isWon: isWon,
+    },
+    { new: true },
+    function (userGame) {
+      res.send(userGame);
+    }
+  );
 });
 
 module.exports = router;
