@@ -37,6 +37,20 @@ overflow: hidden;
   position: absolute;
   
 }
+.dark {
+  background-color: #333;
+  color: #fff;
+}
+#theme{
+  margin-left: 90%;
+}
+.light {
+  background-color: #fff;
+  color: #333;
+}
+.white-content {
+  background: #e4e4e4;
+}
 #score{
   position: absolute;
   font-size: 24px;
