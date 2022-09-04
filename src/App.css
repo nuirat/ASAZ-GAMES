@@ -20,14 +20,35 @@
 #gameBox{
   width: 500px;
   height: 500px;
-  background-color: blue;
+  background-image: url(https://user-images.githubusercontent.com/18351809/46888871-624a3900-ce7f-11e8-808e-99fd90c8a3f4.png);
+overflow: hidden;
 }
 #bird{
-  background-color: red;
+  position: absolute;
+  background-image: url(../public/flappy.png);
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  top: 20px;
+  width: 60px;
+  height: 45px;
+}
+#audio{
+  display: none;
+}
+#music{
+  position: absolute;
+  
+}
+#score{
+  position: absolute;
+  font-size: 24px;
+  color: greenyellow;
+}
+#pipe{
+  position: relative;
+  background-color: green;
+}
+#playMusic{
+  background: none;
+  border: none;
 }
 .Messages{
   border: 2px solid #dedede;
