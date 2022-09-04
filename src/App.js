@@ -3,10 +3,11 @@ import io from 'socket.io-client'
 import {useState} from 'react'
 import Chat from './components/Chat';
 import Game from './components/Game';
+import Landing from './components/Landing';
 function App() {
   const [user,setUser] = useState('')
   const [room,setRoom] = useState('')
-  const socket = io.connect('http://localhost:3001')
+  const socket = io.connect('http://localhost:3000')
   const joinRoom = () => {
     if(user !=="" && room!==""){
       socket.emit("joinRoom" , room)
@@ -14,6 +15,7 @@ function App() {
   }
   return (
     <div className="App">
+    <Landing />
     <h3>Join A Chat</h3>
     <input  type = "text" placeholder = "zain..." value={user} onChange = {(e) => setUser(e.target.value)}/>
     <input  type = "text" placeholder = "room id..." value={room} onChange = { (e) => setRoom(e.target.value)}/>
