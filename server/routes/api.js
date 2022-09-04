@@ -3,24 +3,47 @@ const router = express.Router();
 const Game = require("../models/Game");
 const User = require("../models/User");
 const UserGame = require("../models/UserGame");
-
+//just once time for dummy DATA : =>
 // const dummyUsers = require("../dummy/users");
 // const dummyGames = require("../dummy/games");
-// dummyUsers()
-// dummyGames()
-
-router.get("/users/:userId", function (req, res) {
+// dummyUsers();
+// dummyGames();
+// \\
+router.get("/user", function (req, res) {
+  console.log(req.session.userName);
+  if (req.session.userName) {
+  }
   // to get a user for login
-  let userId = req.params.userId;
-  User.findById(userId, function (err, user) {
-    res.send(user);
-  });
+  res.send(req.session.userName);
 });
+router.post("/login", async function (req, res) {
+  loginData = req.body;
+  req.session.userName = loginData.userName;
+  req.session.password = loginData.password;
+  let userName = req.session.userName;
+  let password = req.session.password;
+  let Status = "";
+  if ((await User.findOne({ userName: userName })) !== null) {
+    Status = "Done";
+  } else {
+    Status = "Not Found";
+  }
+  let userStatus = {
+    userName: userName,
+    Status: Status,
+  };
+  console.log(req.sessionID);
+  res.send(userStatus);
+});
+router.get("/logout", function (req, res) {
+  req.session.destroy();
 
-router.post("/users", function (req, res) {
-  // when create an account (register)
-  let user = req.body;
-  let newUser = new User(user);
+  res.send("Done Deleted");
+});
+router.post("/register", function (req, res) {
+  let registrationInfo = req.body;
+  console.log(registrationInfo);
+  let newUser = new User(registrationInfo);
   newUser.save();
   res.end();
 });
