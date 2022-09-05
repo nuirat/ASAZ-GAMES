@@ -5,7 +5,7 @@ const User = require("../models/User");
 const UserGame = require("../models/UserGame");
 
 // const dummyUsers = require("../dummy/users");
-// const dummyGames = require("../dummy/games");
+const dummyGames = require("../dummy/games");
 // dummyUsers()
 // dummyGames()
 
