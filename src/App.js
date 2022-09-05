@@ -24,14 +24,14 @@ const App = () => {
     axios.get("http://localhost:4000/games").then(function (response) {
       let newGames = response.data;
       setGames(newGames);
-    });
+    }, []);
   });
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Landing />} />
+          <Route exact path="/" element={<Landing games={games} />} />
         </Routes>
       </BrowserRouter>
       <h3>Join A Chat</h3>
