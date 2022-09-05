@@ -27,11 +27,14 @@ const App = () => {
     }, []);
   });
 
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Landing games={games} />} />
+
+          <Route exact path="/" element={games?<Landing games={games}/>:null} />
+
         </Routes>
       </BrowserRouter>
       <h3>Join A Chat</h3>

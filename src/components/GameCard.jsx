@@ -6,7 +6,7 @@ const GameCard = (props) => {
   return (
     <div className='game-card'>
         <div className='game-img'>
-            <img alt='game' width='100%' height='100%' src={props.game.thumbnail} ></img>
+            <img alt='game' width='100%' height='100%' src={props.game.thumbnail}></img>
         </div>
         <div className='game-header'>
             <h2>{props.game.name}</h2>
