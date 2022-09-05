@@ -10,7 +10,6 @@ export default function Game({ socket, user, room }) {
    setResult({ winner: "none", state: "none" ,player1:"none",player2:"none"})
   }
   const { width, height } = useWindowSize()
-  console.log(result);
  // return (<FlappyBird/>
     return(
     <div className="Game">
