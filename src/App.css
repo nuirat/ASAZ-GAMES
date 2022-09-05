@@ -33,9 +33,9 @@ overflow: hidden;
 #audio{
   display: none;
 }
-#music{
-  position: absolute;
-  
+#playMusic{
+margin-left: 72%;
+margin-top: 35%;  
 }
 .dark {
   background-color: #333;
@@ -68,9 +68,19 @@ overflow: hidden;
   font-size: 24px;
   color: greenyellow;
 }
-#pipe{
+.pipe{
   position: relative;
   background-color: green;
+}
+.pipe.down{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../public/pipeDown.png);
+}
+.pipe.top{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../public/pipeUp.png);
 }
 #playMusic{
   background: none;

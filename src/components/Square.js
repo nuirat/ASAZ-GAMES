@@ -1,10 +1,9 @@
 import React from "react";
 import { useState } from "react";
-
-export default function Square({chooseSquare,value}) {
-
- 
+export default function Square(props) {
     return (
-    <span className="square" onClick={chooseSquare}>{value} </span>
+      <div className="square_container" onClick={props.chooseSquare}>
+      {props.x ? 'x' : props.o ? 'o' : ''}
+   </div>
     );
   }
