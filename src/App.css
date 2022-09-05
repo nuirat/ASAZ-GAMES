@@ -12,6 +12,23 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+#flappyGame{
+  width: 100%;
+  justify-content: center;
+  display: flex;
+}
+#gameBox{
+  width: 500px;
+  height: 500px;
+  background-color: blue;
+}
+#bird{
+  background-color: red;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  top: 20px;
+}
 .Messages{
   border: 2px solid #dedede;
   background-color: #f1f1f1;

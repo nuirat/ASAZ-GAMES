@@ -3,15 +3,16 @@ import { useState } from "react";
 import Board from "./Board";
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
+import FlappyBird from "./FlappyBird";
 export default function Game({ socket, user, room }) {
-  const [result, setResult] = useState({ winner: "none", state: "none" });
+  const [result, setResult] = useState({ winner: "none", state: "none",player:"none"});
  const resetGame=()=>{
-   setResult({ winner: "none", state: "none" })
+   setResult({ winner: "none", state: "none" ,player1:"none",player2:"none"})
   }
   const { width, height } = useWindowSize()
-
-  return (
-    
+  console.log(result);
+ // return (<FlappyBird/>
+    return(
     <div className="Game">
       <Board
         socket={socket}
@@ -29,5 +30,5 @@ export default function Game({ socket, user, room }) {
 }
       {result.state === "tie" && <div> Game Tieds</div>}
     </div>
-  );
+   );
 }

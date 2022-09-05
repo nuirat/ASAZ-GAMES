@@ -30,6 +30,9 @@ socket.on('joinRoom' , data => {
 socket.on("sendMessage", data => {
     socket.to(data.room).emit("receive_message", data);
   });
+  socket.on("sendSquare", data => {
+    socket.to(data.room).emit("receive_square", data);
+  });
 
 socket.on('disconnect' , ()=> { //like close the tap
     console.log("user disconnected" , socket.id);
